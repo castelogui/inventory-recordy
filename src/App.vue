@@ -1,27 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <main class="coluns is-gapless is-multiline">
+    <div class="column is-on-quarter">
+      <Menu></Menu>
+    </div>
+    <div class="column is-three-quarter">
+      <router-view></router-view>
+    </div>
+  </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Menu from './components/Menu.vue';
 
 export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: "App",
+    components: { Menu }
 });
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
