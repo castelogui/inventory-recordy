@@ -122,6 +122,7 @@ export default defineComponent({
     },
     async salvar() {
       if (!this.funcionarioEdit._id) {
+        this.funcionarioEdit.departamento = this.dep;
         await store.dispatch(CRIAR_FUNCIONARIO, this.funcionarioEdit);
         this.fechar();
       } else {
