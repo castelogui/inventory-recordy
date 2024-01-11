@@ -1,9 +1,11 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import Registros from "@/views/Registros.vue";
-import FuncionarioComponentVue from "@/components/Funcionarios/FuncionarioComponent.vue";
-import DepartamentoComponentVue from "@/components/Departamentos/DepartamentoComponent.vue";
-import MotivoComponentVue from "@/components/Motivos/MotivoComponent.vue";
-import RegistroComponent from "@/components/Registros/RegistroComponent.vue";
+//import FuncionarioComponentVue from "@/components/Funcionarios/FuncionarioComponent.vue";
+//import DepartamentoComponentVue from "@/components/Departamentos/DepartamentoComponent.vue";
+//import MotivoComponentVue from "@/components/Motivos/MotivoComponent.vue";
+//import RegistroComponent from "@/components/Registros/RegistroComponent.vue";
+import CategoryComponent from "@/components/Categorias/CategoryComponent.vue";
+import ColorComponent from "@/components/Cores/ColorComponent.vue";
 
 const rotas: RouteRecordRaw[] = [
   {
@@ -12,26 +14,36 @@ const rotas: RouteRecordRaw[] = [
     component: Registros,
     children: [
       {
-        path: "/",
-        name: "Registros",
-        component: RegistroComponent,
+        path: "/categories",
+        name: "Categorias",
+        component: CategoryComponent
       },
       {
-        path: "/funcionarios",
-        name: "Funcionarios",
-        component: FuncionarioComponentVue,
+        path: "/cores",
+        name: "Cores",
+        component: ColorComponent
       },
-      {
-        path: "/departamentos",
-        name: "Departamentos",
-        component: DepartamentoComponentVue,
-        props: true
-      },
-      {
-        path: "/motivos",
-        name: "Motivos",
-        component: MotivoComponentVue,
-      },
+      //{
+      //  path: "/",
+      //  name: "Registros",
+      //  component: RegistroComponent,
+      //},
+      //{
+      //  path: "/funcionarios",
+      //  name: "Funcionarios",
+      //  component: FuncionarioComponentVue,
+      //},
+      //{
+      //  path: "/departamentos",
+      //  name: "Departamentos",
+      //  component: DepartamentoComponentVue,
+      //  props: true
+      //},
+      //{
+      //  path: "/motivos",
+      //  name: "Motivos",
+      //  component: MotivoComponentVue,
+      //},
     ],
   },
 ];
