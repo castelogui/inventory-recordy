@@ -6,6 +6,7 @@ import Registros from "@/views/Registros.vue";
 //import RegistroComponent from "@/components/Registros/RegistroComponent.vue";
 import CategoryComponent from "@/components/Categorias/CategoryComponent.vue";
 import ColorComponent from "@/components/Cores/ColorComponent.vue";
+import ItemComponent from "@/components/Items/ItemComponent.vue";
 
 const rotas: RouteRecordRaw[] = [
   {
@@ -22,6 +23,11 @@ const rotas: RouteRecordRaw[] = [
         path: "/cores",
         name: "Cores",
         component: ColorComponent
+      },
+      {
+        path: "/items",
+        name: "Items",
+        component: ItemComponent
       },
       //{
       //  path: "/",

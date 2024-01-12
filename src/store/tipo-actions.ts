@@ -40,4 +40,11 @@ export const ATUALIZAR_COR = "ATUALIZAR_COR";
 export const DELETAR_COR = "DELETAR_COR";
 export const LIMPAR_LISTA_COR = "LIMPAR_LISTA_COR";
 
+export const DEFINIR_ITEMS = "DEFINIR_ITEMS";
+export const DEFINIR_ITEM = "DEFINIR_ITEM";
+export const CRIAR_ITEM = "CRIAR_ITEM";
+export const ATUALIZAR_ITEM = "ATUALIZAR_ITEM";
+export const DELETAR_ITEM = "DELETAR_ITEM";
+export const LIMPAR_LISTA_ITEM = "LIMPAR_LISTA_ITEM";
+
 export const NOTIFICAR = "NOTIFICAR";
