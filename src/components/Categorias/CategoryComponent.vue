@@ -61,7 +61,7 @@
       <template #options>
         <button class="button is-success" @click="salvar">Save</button>
         <button class="button" @click="fechar">Cancel</button>
-        <button class="button is-danger" @click="deletar(catEdit)">
+        <button v-if="catEdit.id" class="button is-danger" @click="deletar(catEdit)">
           Deletar
         </button>
       </template>

@@ -2,7 +2,7 @@
   <div class="content">
     <div>
       <div class="buttons">
-        <button class="button is-info" @click="novoCat">
+        <button class="button is-info" @click="novaCor">
           <span class="icon is-small">
             <i class="fas fa-plus"></i>
           </span>
@@ -37,7 +37,7 @@
           <td>{{ cor.hexadecimal }}</td>
           <td>{{ cor.created_at }}</td>
           <td>
-            <span class="button is-small is-info" @click="editarCat(cor)">
+            <span class="button is-small is-info" @click="editarCor(cor)">
               <i class="fa fa-pen"></i>
             </span>
           </td>
@@ -70,7 +70,7 @@
       <template #options>
         <button class="button is-success" @click="salvar">Save</button>
         <button class="button" @click="fechar">Cancel</button>
-        <button class="button is-danger" @click="deletar(corEdit)">
+        <button v-if="corEdit.id" class="button is-danger" @click="deletar(corEdit)">
           Deletar
         </button>
       </template>
@@ -106,11 +106,11 @@ export default defineComponent({
     };
   },
   methods: {
-    editarCat(cat: IColor) {
-      this.corEdit = cat;
+    editarCor(cor: IColor) {
+      this.corEdit = cor;
       this.open();
     },
-    novoCat() {
+    novaCor() {
       this.corEdit = {} as IColor;
       this.open();
     },
@@ -145,9 +145,9 @@ export default defineComponent({
         }
       }
     },
-    async deletar(cat: IColor) {
+    async deletar(cor: IColor) {
       await store
-        .dispatch(DELETAR_COR, cat)
+        .dispatch(DELETAR_COR, cor)
         .then(() => {
           this.fechar();
           window.location.reload();
