@@ -110,22 +110,28 @@ export default defineComponent({
         await store
           .dispatch(CRIAR_CATEGORY, this.catEdit)
           .then(() => {
-            Notificacoes.saveSucess("Categoria", `A categoria ${this.catEdit.name} foi cadastrada com sucesso`);
+            Notificacoes.saveSucess(
+              "Categoria",
+              `A categoria ${this.catEdit.name} foi cadastrada com sucesso`
+            );
             this.fechar();
           })
           .catch((err) => {
-            Notificacoes.saveError("Categoria", "",err.response.data);
+            Notificacoes.saveError("Categoria", "", err.response.data);
           });
       } else {
         if (this.catEdit.id) {
           await store
             .dispatch(ATUALIZAR_CATEGORY, this.catEdit)
             .then(() => {
-              Notificacoes.saveSucess("Categoria", `A categoria ${this.catEdit.name} foi atualizada com sucesso`);
+              Notificacoes.saveSucess(
+                "Categoria",
+                `A categoria ${this.catEdit.name} foi atualizada com sucesso`
+              );
               this.fechar();
             })
             .catch((err) => {
-              Notificacoes.saveError("Categoria", "",err.response.data);
+              Notificacoes.saveError("Categoria", "", err.response.data);
             });
         }
       }
@@ -136,10 +142,17 @@ export default defineComponent({
         .then(() => {
           this.fechar();
           window.location.reload();
-          Notificacoes.deleteSucess("Categoria", "Categoria deletada com sucesso")
+          Notificacoes.deleteSucess(
+            "Categoria",
+            "Categoria deletada com sucesso"
+          );
         })
         .catch((err) => {
-          Notificacoes.deleteError("Categoria", "Ocorreu um erro ao deletar a categoria", err.response.data)
+          Notificacoes.deleteError(
+            "Categoria",
+            "Ocorreu um erro ao deletar a categoria",
+            err.response.data
+          );
         });
     },
     open() {

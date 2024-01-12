@@ -85,7 +85,12 @@ import { defineComponent } from "vue";
 import Modal from "../Modal.vue";
 import IColor from "../../interfaces/IColor";
 import Notificacoes from "../../mixins/notificacoes";
-import { ATUALIZAR_COR, CRIAR_COR, DEFINIR_CORES, DELETAR_COR } from "@/store/tipo-actions";
+import {
+  ATUALIZAR_COR,
+  CRIAR_COR,
+  DEFINIR_CORES,
+  DELETAR_COR,
+} from "@/store/tipo-actions";
 
 export default defineComponent({
   name: "Color-Component",
@@ -114,22 +119,28 @@ export default defineComponent({
         await store
           .dispatch(CRIAR_COR, this.corEdit)
           .then(() => {
-            Notificacoes.saveSucess("Cor", `A cor ${this.corEdit.name} - ${this.corEdit.hexadecimal} foi cadastrada com sucesso`);
+            Notificacoes.saveSucess(
+              "Cor",
+              `A cor ${this.corEdit.name} - ${this.corEdit.hexadecimal} foi cadastrada com sucesso`
+            );
             this.fechar();
           })
           .catch((err) => {
-            Notificacoes.saveError("Cor", "",err.response.data);
+            Notificacoes.saveError("Cor", "", err.response.data);
           });
       } else {
         if (this.corEdit.id) {
           await store
             .dispatch(ATUALIZAR_COR, this.corEdit)
             .then(() => {
-              Notificacoes.saveSucess("Cor", `A cor ${this.corEdit.name} - ${this.corEdit.hexadecimal} foi atualizada com sucesso`);
+              Notificacoes.saveSucess(
+                "Cor",
+                `A cor ${this.corEdit.name} - ${this.corEdit.hexadecimal} foi atualizada com sucesso`
+              );
               this.fechar();
             })
             .catch((err) => {
-              Notificacoes.saveError("Cor", "",err.response.data);
+              Notificacoes.saveError("Cor", "", err.response.data);
             });
         }
       }
@@ -143,7 +154,11 @@ export default defineComponent({
           Notificacoes.deleteSucess("Cor", "");
         })
         .catch((err) => {
-          Notificacoes.deleteError("Cor", "Ocorreu um erro ao deletar a cor", err.response.data);
+          Notificacoes.deleteError(
+            "Cor",
+            "Ocorreu um erro ao deletar a cor",
+            err.response.data
+          );
         });
     },
     open() {
