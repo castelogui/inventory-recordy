@@ -7,6 +7,7 @@ import Registros from "@/views/Registros.vue";
 import CategoryComponent from "@/components/Categorias/CategoryComponent.vue";
 import ColorComponent from "@/components/Cores/ColorComponent.vue";
 import ItemComponent from "@/components/Items/ItemComponent.vue";
+import TypeMovementComponent from "@/components/TypeMovement/TypeMovementComponent.vue";
 
 const rotas: RouteRecordRaw[] = [
   {
@@ -17,17 +18,22 @@ const rotas: RouteRecordRaw[] = [
       {
         path: "/categories",
         name: "Categorias",
-        component: CategoryComponent
+        component: CategoryComponent,
       },
       {
         path: "/cores",
         name: "Cores",
-        component: ColorComponent
+        component: ColorComponent,
       },
       {
         path: "/items",
         name: "Items",
-        component: ItemComponent
+        component: ItemComponent,
+      },
+      {
+        path: "/type-movement",
+        name: "Tipos De Movimento",
+        component: TypeMovementComponent,
       },
       //{
       //  path: "/",

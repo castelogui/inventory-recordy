@@ -8,6 +8,7 @@ import { category, EstadoCategory } from "./modulos/category";
 import { EstadoNotificacao, notificacao } from "./modulos/notificacao";
 import { color, EstadoColor } from "./modulos/cor";
 import { EstadoItem, item } from "./modulos/item";
+import { EstadoTypeMovement, typeMovement } from "./modulos/typeMovement";
 
 export interface Estado {
   funcionario: EstadoFuncionario;
@@ -17,7 +18,8 @@ export interface Estado {
   category: EstadoCategory;
   notificacao: EstadoNotificacao;
   color: EstadoColor;
-  item: EstadoItem
+  item: EstadoItem;
+  typeMovement: EstadoTypeMovement
 }
 
 export const key: InjectionKey<Store<Estado>> = Symbol();
@@ -47,6 +49,9 @@ export const store = createStore<Estado>({
     },
     item: {
       items: []
+    },
+    typeMovement:{
+      typeMovements: []
     }
 
   },
@@ -58,7 +63,8 @@ export const store = createStore<Estado>({
     category,
     notificacao,
     color,
-    item
+    item,
+    typeMovement
   },
 });
 
