@@ -139,7 +139,7 @@ export default defineComponent({
           Notificacoes.deleteSucess("Categoria", "Categoria deletada com sucesso")
         })
         .catch((err) => {
-          Notificacoes.deleteError("Categoria", "", err)
+          Notificacoes.deleteError("Categoria", "Ocorreu um erro ao deletar a categoria", err.response.data)
         });
     },
     open() {

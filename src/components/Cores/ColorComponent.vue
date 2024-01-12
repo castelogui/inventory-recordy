@@ -143,7 +143,7 @@ export default defineComponent({
           Notificacoes.deleteSucess("Cor", "");
         })
         .catch((err) => {
-          Notificacoes.deleteError("Cor", "", err);
+          Notificacoes.deleteError("Cor", "Ocorreu um erro ao deletar a cor", err.response.data);
         });
     },
     open() {

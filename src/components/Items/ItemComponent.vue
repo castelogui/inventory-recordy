@@ -244,7 +244,7 @@ export default defineComponent({
           Notificacoes.deleteSucess("Item", "");
         })
         .catch((err) => {
-          Notificacoes.deleteError("Item", "", err);
+          Notificacoes.deleteError("Item", "", err.response.data);
         });
     },
     open() {
