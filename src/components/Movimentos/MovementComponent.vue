@@ -176,7 +176,7 @@ export default defineComponent({
           .then(() => {
             Notificacoes.saveSucess(
               "Movement",
-              `O movement ${this.movementEdit.name} foi cadastrado com sucesso`
+              `O movement ${this.movementEdit.description} foi cadastrado com sucesso`
             );
             this.fechar();
           })
@@ -190,7 +190,7 @@ export default defineComponent({
             .then(() => {
               Notificacoes.saveSucess(
                 "Movement",
-                `O movement ${this.movementEdit.name} foi atualizado com sucesso`
+                `O movement ${this.movementEdit.description} foi atualizado com sucesso`
               );
               this.fechar();
             })
