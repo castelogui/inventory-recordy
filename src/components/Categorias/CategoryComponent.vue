@@ -44,24 +44,40 @@
     <Modal>
       <template #content>
         <div class="control">
-          <input
-            class="input"
-            type="text"
-            placeholder="Nome"
-            v-model="catEdit.name"
-          />
-          <input
-            class="input"
-            type="text"
-            placeholder="Descrição"
-            v-model="catEdit.description"
-          />
+          <div class="columns">
+            <div class="column field">
+              <label for="name" class="label">*Nome</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Nome"
+                  v-model="catEdit.name"
+                />
+              </div>
+            </div>
+            <div class="column field">
+              <label for="description" class="label">Descricao</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Descrição"
+                  v-model="catEdit.description"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </template>
       <template #options>
         <button class="button is-success" @click="salvar">Save</button>
         <button class="button" @click="fechar">Cancel</button>
-        <button v-if="catEdit.id" class="button is-danger" @click="deletar(catEdit)">
+        <button
+          v-if="catEdit.id"
+          class="button is-danger"
+          @click="deletar(catEdit)"
+        >
           Deletar
         </button>
       </template>

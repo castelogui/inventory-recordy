@@ -47,30 +47,51 @@
     <Modal>
       <template #content>
         <div class="control">
-          <input
-            class="input"
-            type="text"
-            placeholder="Nome"
-            v-model="corEdit.name"
-          />
-          <input
-            class="input"
-            type="text"
-            placeholder="Descrição"
-            v-model="corEdit.description"
-          />
-          <input
-            class="input"
-            type="text"
-            placeholder="Hexadecimal"
-            v-model="corEdit.hexadecimal"
-          />
+          <div class="columns">
+            <div class="column field">
+              <label for="name" class="label">*Nome</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Nome"
+                  v-model="corEdit.name"
+                />
+              </div>
+            </div>
+            <div class="column field">
+              <label for="description" class="label">Descrição</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Descrição"
+                  v-model="corEdit.description"
+                />
+              </div>
+            </div>
+            <div class="column field">
+              <label for="hexadecimal" class="label">*Hexadecimal</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Hexadecimal"
+                  v-model="corEdit.hexadecimal"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </template>
       <template #options>
         <button class="button is-success" @click="salvar">Save</button>
         <button class="button" @click="fechar">Cancel</button>
-        <button v-if="corEdit.id" class="button is-danger" @click="deletar(corEdit)">
+        <button
+          v-if="corEdit.id"
+          class="button is-danger"
+          @click="deletar(corEdit)"
+        >
           Deletar
         </button>
       </template>
