@@ -89,7 +89,7 @@
           </div>
           <div class="columns">
             <div class="column field">
-              <label class="label" for="description">Descrição</label>
+              <label class="label" for="description">*Descrição</label>
               <div class="control">
                 <input
                   class="input"
@@ -170,7 +170,6 @@ export default defineComponent({
     },
     async salvar() {
       if (!this.movementEdit.id || this.movementEdit.id == undefined) {
-        console.log(this.movementEdit);
         await store
           .dispatch(CRIAR_MOVEMENT, this.movementEdit)
           .then(() => {
