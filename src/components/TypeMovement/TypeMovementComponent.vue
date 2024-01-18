@@ -14,18 +14,18 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th>Hexadecimal</th>
+          <th>Código</th>
+          <th>Tipo</th>
+          <th>Descricao</th>
           <th>Data de Criação</th>
           <th>Opções</th>
         </tr>
       </thead>
       <tfoot>
         <tr>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th>Hexadecimal</th>
+          <th>Código</th>
+          <th>Tipo</th>
+          <th>Descricao</th>
           <th>Data de Criação</th>
           <th>Opções</th>
         </tr>
