@@ -32,7 +32,7 @@
         <tr>
           <td>{{ cat.name }}</td>
           <td>{{ cat.description }}</td>
-          <td>{{ cat.created_at }}</td>
+          <td>{{ formatDate(new Date(cat.created_at)) }}</td>
           <td>
             <span class="button is-small is-info" @click="editarCat(cat)">
               <i class="fa fa-pen"></i>
@@ -98,6 +98,7 @@ import { defineComponent } from "vue";
 import Modal from "../Modal.vue";
 import ICategory from "../../interfaces/ICategory";
 import Notificacoes from "@/mixins/notificacoes";
+import { FormatCustomDate } from "../../util/formatCustomDate";
 
 export default defineComponent({
   name: "Category-Component",
@@ -113,6 +114,9 @@ export default defineComponent({
     };
   },
   methods: {
+    formatDate(date: Date) {
+      return new FormatCustomDate().dateTimeLocal(date);
+    },
     editarCat(cat: ICategory) {
       this.catEdit = cat;
       this.open();

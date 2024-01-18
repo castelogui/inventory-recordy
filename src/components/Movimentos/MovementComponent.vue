@@ -46,8 +46,8 @@
           <td>{{ mov.item.name }}</td>
           <td>{{ mov.item_estoque }}</td>
           <td>{{ mov.item_estoque_ant }}</td>
-          <td>{{ mov.created_at }}</td>
-          <td>{{ mov.updated_at }}</td>
+          <td>{{ formatDate(new Date(mov.created_at)) }}</td>
+          <td>{{ formatDate(new Date(mov.updated_at)) }}</td>
           <td>
             <span class="button is-small is-info" @click="editarMovement(mov)">
               <i class="fa fa-pen"></i>
@@ -143,6 +143,7 @@ import {
   DEFINIR_TYPEMOVEMENTS,
   DEFINIR_MOVEMENTS,
 } from "../../store/tipo-actions";
+import { FormatCustomDate } from "../../util/formatCustomDate";
 
 export default defineComponent({
   name: "Movement-Component",
@@ -160,6 +161,9 @@ export default defineComponent({
     };
   },
   methods: {
+    formatDate(date: Date) {
+      return new FormatCustomDate().dateTimeLocal(date);
+    },
     editarMovement(movement: IMovement) {
       this.movementEdit = movement;
       this.open();

@@ -47,7 +47,7 @@
           <td>{{ item.category.name }}</td>
           <td>{{ item.color.name }}</td>
           <td>{{ item.size }}</td>
-          <td>{{ item.created_at }}</td>
+          <td>{{ formatDate(new Date(item.created_at)) }}</td>
           <td>
             <span class="button is-small is-info" @click="editarItem(item)">
               <i class="fa fa-pen"></i>
@@ -179,6 +179,7 @@ import {
   DEFINIR_CATEGORIES,
   DEFINIR_CORES,
 } from "../../store/tipo-actions";
+import { FormatCustomDate } from "../../util/formatCustomDate";
 
 export default defineComponent({
   name: "Item-Component",
@@ -196,6 +197,9 @@ export default defineComponent({
     };
   },
   methods: {
+    formatDate(date: Date) {
+      return new FormatCustomDate().dateTimeLocal(date);
+    },
     editarItem(item: IItem) {
       this.itemEdit = item;
       this.open();

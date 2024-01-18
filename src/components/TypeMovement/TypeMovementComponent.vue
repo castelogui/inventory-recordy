@@ -35,7 +35,7 @@
           <td>{{ typeMov.code }}</td>
           <td>{{ typeMov.type }}</td>
           <td>{{ typeMov.description }}</td>
-          <td>{{ typeMov.created_at }}</td>
+          <td>{{ formatDate(new Date(typeMov.created_at)) }}</td>
           <td>
             <span
               class="button is-small is-info"
@@ -107,6 +107,7 @@ import {
   DEFINIR_TYPEMOVEMENTS,
   DELETAR_TYPEMOVEMENT,
 } from "../../store/tipo-actions";
+import { FormatCustomDate } from "../../util/formatCustomDate";
 
 export default defineComponent({
   name: "TypeMovement-Component",
@@ -122,6 +123,9 @@ export default defineComponent({
     };
   },
   methods: {
+    formatDate(date: Date) {
+      return new FormatCustomDate().dateTimeLocal(date);
+    },
     editarTypeMov(typeMov: ITypeMovement) {
       this.typeMovEdit = typeMov;
       this.open();

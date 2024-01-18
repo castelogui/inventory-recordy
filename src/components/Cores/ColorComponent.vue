@@ -35,7 +35,7 @@
           <td>{{ cor.name }}</td>
           <td>{{ cor.description }}</td>
           <td>{{ cor.hexadecimal }}</td>
-          <td>{{ cor.created_at }}</td>
+          <td>{{ formatDate(new Date(cor.created_at)) }}</td>
           <td>
             <span class="button is-small is-info" @click="editarCor(cor)">
               <i class="fa fa-pen"></i>
@@ -112,6 +112,7 @@ import {
   DEFINIR_CORES,
   DELETAR_COR,
 } from "@/store/tipo-actions";
+import { FormatCustomDate } from "../../util/formatCustomDate";
 
 export default defineComponent({
   name: "Color-Component",
@@ -127,6 +128,9 @@ export default defineComponent({
     };
   },
   methods: {
+    formatDate(date: Date) {
+      return new FormatCustomDate().dateTimeLocal(date);
+    },
     editarCor(cor: IColor) {
       this.corEdit = cor;
       this.open();
