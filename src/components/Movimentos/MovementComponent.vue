@@ -46,8 +46,8 @@
           <td>{{ mov.item.name }}</td>
           <td>{{ mov.item_estoque }}</td>
           <td>{{ mov.item_estoque_ant }}</td>
-          <td>{{ formatDate(new Date(mov.created_at)) }}</td>
-          <td>{{ formatDate(new Date(mov.updated_at)) }}</td>
+          <td>{{ formatDate(mov.created_at) }}</td>
+          <td>{{ formatDate(mov.updated_at) }}</td>
           <td>
             <span class="button is-small is-info" @click="editarMovement(mov)">
               <i class="fa fa-pen"></i>

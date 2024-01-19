@@ -35,7 +35,7 @@
           <td>{{ cor.name }}</td>
           <td>{{ cor.description }}</td>
           <td>{{ cor.hexadecimal }}</td>
-          <td>{{ formatDate(new Date(cor.created_at)) }}</td>
+          <td>{{ formatDate(cor.created_at) }}</td>
           <td>
             <span class="button is-small is-info" @click="editarCor(cor)">
               <i class="fa fa-pen"></i>

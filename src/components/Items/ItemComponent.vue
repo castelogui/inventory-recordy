@@ -47,7 +47,7 @@
           <td>{{ item.category.name }}</td>
           <td>{{ item.color.name }}</td>
           <td>{{ item.size }}</td>
-          <td>{{ formatDate(new Date(item.created_at)) }}</td>
+          <td>{{ formatDate(item.created_at) }}</td>
           <td>
             <span class="button is-small is-info" @click="editarItem(item)">
               <i class="fa fa-pen"></i>

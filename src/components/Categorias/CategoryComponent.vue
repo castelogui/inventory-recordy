@@ -32,7 +32,7 @@
         <tr>
           <td>{{ cat.name }}</td>
           <td>{{ cat.description }}</td>
-          <td>{{ formatDate(new Date(cat.created_at)) }}</td>
+          <td>{{ formatDate(cat.created_at) }}</td>
           <td>
             <span class="button is-small is-info" @click="editarCat(cat)">
               <i class="fa fa-pen"></i>

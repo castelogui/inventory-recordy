@@ -35,7 +35,7 @@
           <td>{{ typeMov.code }}</td>
           <td>{{ typeMov.type }}</td>
           <td>{{ typeMov.description }}</td>
-          <td>{{ formatDate(new Date(typeMov.created_at)) }}</td>
+          <td>{{ formatDate(typeMov.created_at) }}</td>
           <td>
             <span
               class="button is-small is-info"

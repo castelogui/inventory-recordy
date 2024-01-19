@@ -1,7 +1,9 @@
 export class FormatCustomDate {
   dateTimeLocal(dateISO: Date) {
-    const date = dateISO.toLocaleString("pt-BR", {
-      timeZone: "America/Manaus",
+    const toDate = new Date(dateISO)
+    const date = toDate.toLocaleString("pt-BR", {
+      hour12: false,
+      timeZone: "UTC",
     });
 
     return date;
