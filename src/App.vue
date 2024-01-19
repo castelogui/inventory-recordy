@@ -1,15 +1,12 @@
 <template>
   <main class="coluns is-gapless is-multiline">
-    <div v-if="login == true">
-      <div class="column is-on-quarter">
-        <Menu></Menu>
-      </div>
-      <div class="column is-three-quarter">
-        <Notificacoes></Notificacoes>
-        <router-view></router-view>
-      </div>
+    <div class="column is-on-quarter">
+      <Menu></Menu>
     </div>
-    <LoginComponent v-else-if="login == false"></LoginComponent>
+    <div class="column is-three-quarter">
+      <Notificacoes></Notificacoes>
+      <router-view></router-view>
+    </div>
   </main>
 </template>
 
@@ -17,15 +14,9 @@
 import { defineComponent } from "vue";
 import Menu from "./components/Menu.vue";
 import Notificacoes from "./components/Notificacoes/Notificacoes.vue";
-import LoginComponent from "./components/Login/LoginComponent.vue";
 
 export default defineComponent({
   name: "App",
-  components: { Menu, Notificacoes, LoginComponent },
-  data() {
-    return {
-      login: false,
-    };
-  },
+  components: { Menu, Notificacoes },
 });
 </script>
