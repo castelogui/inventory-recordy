@@ -1,5 +1,5 @@
 <template>
-  <main class="coluns is-gapless is-multiline">
+  <main class="is-mobile is-gapless is-multiline">
     <div class="column is-on-quarter">
       <Menu></Menu>
     </div>
