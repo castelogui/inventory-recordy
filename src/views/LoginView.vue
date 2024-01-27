@@ -1,9 +1,9 @@
 <template>
   <div class="columns is-centered is-vcentered">
     <div class="column is-half">
-      <div class="card">
+      <div class="card is-circle">
         <div class="columns is-vcentered">
-          <div class="column">
+          <div class="column left-login">
             <div class="column is-3"></div>
             <div class="column">
               <div class="">
@@ -79,3 +79,29 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "LoginView",
+})
+</script>
+
+<style>
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.left-login {
+  background: linear-gradient(
+    60deg,
+    rgb(224, 224, 224) 0%,
+    rgb(255, 255, 255) 150%
+  );
+}
+</style>
