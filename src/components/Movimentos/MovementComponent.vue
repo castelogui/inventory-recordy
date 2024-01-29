@@ -10,10 +10,12 @@
         </button>
       </div>
     </div>
+    <!--
 
-    <table class="table">
-      <thead>
-        <tr>
+
+      <table class="table">
+        <thead>
+          <tr>
           <th>Descrição</th>
           <th>Quantidade</th>
           <th>Tipo de Movimento</th>
@@ -56,6 +58,122 @@
         </tr>
       </tbody>
     </table>
+-->
+    <div class="card">
+      <nav class="level is-mobile">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Entradas</p>
+            <p class="title">668</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Saidas</p>
+            <p class="title">43</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Ajustes: Entrada</p>
+            <p class="title">0</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Ajustes: Saida</p>
+            <p class="title">0</p>
+          </div>
+        </div>
+      </nav>
+      <header class="card-header">
+        <p class="card-header-title">Ultimas Movimentações</p>
+        <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </header>
+      <div class="card-content" v-for="(d, index) in dates" :key="index">
+        <strong>{{ d }}</strong>
+        <div v-for="mov in movements" :key="mov.id">
+          <article
+            class="media"
+            v-if="new Date(mov.created_at).toLocaleDateString('pt-BR') == d"
+          >
+            <div class="media-left">
+              <span
+                class="icon has-text-danger"
+                v-if="mov.type_movement.code == '2'"
+              >
+                <i class="fas fa-arrow-down"></i>
+              </span>
+              <span
+                class="icon has-text-link"
+                v-if="mov.type_movement.code == '1'"
+              >
+                <i class="fas fa-arrow-up"></i>
+              </span>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <div>
+                  <div class="columns">
+                    <div class="column is-6">
+                      <strong>{{ mov.item.name }}</strong>
+                      <small> @johnsmith</small>
+                      <p>
+                        <small>
+                          {{ mov.description }}
+                        </small>
+                      </p>
+                    </div>
+                    <div class="column">
+                      <span class="icon has-text-info">
+                        <i class="far fa-calendar-check"></i>
+                      </span>
+                      <small>{{ formatDate(new Date(mov.created_at)) }}</small>
+                    </div>
+                    <div class="column">
+                      <span class="icon has-text-link">
+                        <i class="fas fa-calendar-plus"></i>
+                      </span>
+                      <small>{{ formatDate(new Date(mov.updated_at)) }}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="media-right">
+              <span
+              class="icon has-text-success"
+              v-if="mov.type_movement.code == '1'"
+              >
+              <i class="fas fa-plus"></i>
+              </span>
+              <span
+                class="icon has-text-danger"
+                v-if="mov.type_movement.code == '2'"
+                >
+                <i class="fas fa-minus"></i>
+              </span>
+              <span class="subtitle"> {{ mov.quantity }} </span>
+            </div>
+            <div class="media-right">
+              <nav class="level is-mobile">
+                <div class="level-left">
+                  <a class="level-item" aria-label="reply">
+                    <span class="icon is-small is-success" @click="editarMovement(mov)">
+                      <i class="fas fa-pen" aria-hidden="true"></i>
+                    </span>
+                  </a>
+                </div>
+              </nav>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
     <Modal>
       <template #content>
         <div class="control">
@@ -150,6 +268,7 @@ export default defineComponent({
   data() {
     return {
       movementEdit: {} as IMovement,
+      dates: [] as string[],
     };
   },
   setup() {
@@ -223,7 +342,14 @@ export default defineComponent({
     },
   },
   mounted() {
-    store.dispatch(DEFINIR_MOVEMENTS);
+    store.dispatch(DEFINIR_MOVEMENTS).then(() => {
+      this.movements.map((mov: IMovement) => {
+        const date = new Date(mov.created_at).toLocaleDateString("pt-BR");
+        if (!this.dates.includes(date)) {
+          this.dates.push(date);
+        }
+      });
+    });
     store.dispatch(DEFINIR_TYPEMOVEMENTS);
     store.dispatch(DEFINIR_ITEMS);
   },
