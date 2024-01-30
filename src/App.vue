@@ -1,5 +1,5 @@
 <template>
-  <main class="coluns is-gapless is-multiline">
+  <main class="is-mobile is-gapless is-multiline">
     <div class="column is-on-quarter">
       <Menu></Menu>
     </div>
@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Menu from './components/Menu.vue';
-import Notificacoes from './components/Notificacoes/Notificacoes.vue';
+import { defineComponent } from "vue";
+import Menu from "./components/Menu.vue";
+import Notificacoes from "./components/Notificacoes/Notificacoes.vue";
 
 export default defineComponent({
-    name: "App",
-    components: { Menu, Notificacoes }
+  name: "App",
+  components: { Menu, Notificacoes },
 });
 </script>

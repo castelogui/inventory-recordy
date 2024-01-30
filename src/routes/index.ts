@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import Registros from "@/views/Registros.vue";
+import LoginView from "@/views/LoginView.vue";
 //import FuncionarioComponentVue from "@/components/Funcionarios/FuncionarioComponent.vue";
 //import DepartamentoComponentVue from "@/components/Departamentos/DepartamentoComponent.vue";
 //import MotivoComponentVue from "@/components/Motivos/MotivoComponent.vue";
@@ -63,6 +64,11 @@ const rotas: RouteRecordRaw[] = [
       //  component: MotivoComponentVue,
       //},
     ],
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: LoginView,
   },
 ];
 
