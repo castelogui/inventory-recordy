@@ -54,10 +54,14 @@
         <h1 class="title">Olá</h1>
       </div>
       <div class="navbar-end">
-        <ul class="navbar-item" v-if="currentRoute !== '/login'">
+        <ul
+          class="navbar-item columns is-mobile"
+          v-if="currentRoute !== '/login'"
+        >
           <li
             v-for="(path, i) in rotas"
             :key="i"
+            class="column"
             :class="path.path == $route.path ? 'is-active' : ''"
           >
             <router-link :to="path.path">
