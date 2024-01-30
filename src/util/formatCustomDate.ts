@@ -16,4 +16,25 @@ export class FormatCustomDate {
     const [HH, mm, ss] = time.split(":");
     return new Date(`${YYYY}-${MM}-${DD}T${HH}:${mm}:${ss}.040Z`);
   }
+  date(dateISO: Date) {
+    const meses = [
+      "Janeiro",
+      "Fevereiro",
+      "Março",
+      "Abril",
+      "Maio",
+      "Junho",
+      "Julho",
+      "Agosto",
+      "Setembro",
+      "Outubro",
+      "Novembro",
+      "Dezembro",
+    ];
+    const dd = dateISO.getDate();
+    const mm = meses[dateISO.getMonth()];
+    const yy = dateISO.getFullYear();
+
+    return `${dd} de ${mm} de ${yy}`;
+  }
 }
