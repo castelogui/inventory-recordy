@@ -10,56 +10,7 @@
         </button>
       </div>
     </div>
-    <!--
-
-
-      <table class="table">
-        <thead>
-          <tr>
-          <th>Descrição</th>
-          <th>Quantidade</th>
-          <th>Tipo de Movimento</th>
-          <th>Item</th>
-          <th>Estoque Atual</th>
-          <th>Estoque Anterior</th>
-          <th>Data Criação</th>
-          <th>Data Atualização</th>
-          <th>Opções</th>
-        </tr>
-      </thead>
-      <tfoot>
-        <tr>
-          <th>Descrição</th>
-          <th>Quantidade</th>
-          <th>Tipo de Movimento</th>
-          <th>Item</th>
-          <th>Estoque Atual</th>
-          <th>Estoque Anterior</th>
-          <th>Data Criação</th>
-          <th>Data Atualização</th>
-          <th>Opções</th>
-        </tr>
-      </tfoot>
-      <tbody v-for="(mov, i) in movements" :key="i">
-        <tr>
-          <td>{{ mov.description }}</td>
-          <td>{{ mov.quantity }}</td>
-          <td>{{ mov.type_movement.type }}</td>
-          <td>{{ mov.item.name }}</td>
-          <td>{{ mov.item_estoque }}</td>
-          <td>{{ mov.item_estoque_ant }}</td>
-          <td>{{ formatDate(new Date(mov.created_at)) }}</td>
-          <td>{{ formatDate(new Date(mov.updated_at)) }}</td>
-          <td>
-            <span class="button is-small is-info" @click="editarMovement(mov)">
-              <i class="fa fa-pen"></i>
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
--->
-    <div>
+    <section class="section">
       <div class="columns">
         <div class="column">
           <div class="content">
@@ -108,69 +59,140 @@
             </div>
           </div>
         </div>
-        <div class="column is-7 card">
-          <header class="card-header">
-            <p class="card-header-title">Ultimas Movimentações</p>
-            <!--
-              <button class="card-header-icon" aria-label="more options">
+        <div class="column is-8">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">Ultimas Movimentações</p>
+              <button
+                class="card-header-icon"
+                aria-label="more options"
+                @click="filtro"
+              >
                 <span class="icon">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  <i
+                    class="fas fa-angle-left"
+                    aria-hidden="true"
+                    v-if="!filtroAberto"
+                  ></i>
+                  <i
+                    class="fas fa-angle-down"
+                    aria-hidden="true"
+                    v-if="filtroAberto"
+                  ></i>
                 </span>
               </button>
-            -->
-          </header>
-
-          <div
-            class="card-content content-movements"
-            v-for="(d, index) in dates"
-            :key="index"
-          >
-            <p class="subtitle" v-if="d === formatDate(new Date())">Hoje</p>
-            <p class="subtitle" v-if="d !== formatDate(new Date())">{{ d }}</p>
-            <div
-              class="content is-small"
-              v-for="mov in movements"
-              :key="mov.id"
-            >
-              <div
-                class="columns is-mobile card-movement"
-                @click="editarMovement(mov)"
-                v-if="formatDate(new Date(mov.created_at)) == d"
-              >
-                <div class="column">
-                  <div
-                    class="tags has-addons is-rounded"
-                    v-if="mov.type_movement.code == '2'"
-                  >
-                    <span class="tag is-danger is-light">Saida</span>
-                    <span class="tag is-danger"
-                      ><i class="fas fa-arrow-down"></i
-                    ></span>
-                  </div>
-                  <div
-                    class="tags has-addons are-rounded"
-                    v-if="mov.type_movement.code == '1'"
-                  >
-                    <span class="tag is-link is-light">Entrada</span>
-                    <span class="tag is-info"
-                      ><i class="fas fa-arrow-up"></i
-                    ></span>
+            </header>
+            <div v-if="filtroAberto" class="columns section">
+              <div class="column">
+                <div class="field ">
+                  <div class="control">
+                    <input
+                      v-model="filtros.valor"
+                      class="input is-small is-rounded"
+                      type="number"
+                      placeholder="Quantidade"
+                    />
                   </div>
                 </div>
-                <div class="column is-6">
-                  <div class="content">
-                    <div>
-                      <div class="columns">
-                        <div class="column">
-                          <strong>{{ mov.item.name }}</strong>
-                          <small> @johnsmith</small>
-                          <p>
-                            <small>
-                              {{ mov.description }}
-                            </small>
-                          </p>
-                        </div>
-                        <!--
+              </div>
+              <div class="column">
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-small is-rounded">
+                      <select v-model="filtros.tipoMovimento">
+                        <option value="">Movimento</option>
+                        <option value="1">Entrada</option>
+                        <option value="2">Saída</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-small is-rounded">
+                      <select v-model="filtros.tipoMovimento">
+                        <option value="">Itens</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <div class="control">
+                    <input v-model="filtros.data" class="input is-small" type="date" />
+                  </div>
+                </div>
+              </div>
+              <div class="column is-2">
+                <div class="field">
+                  <div class="control">
+                    <button @click="aplicarFiltro" class="button is-primary is-small is-fullwidth">
+                      Aplicar Filtro
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="card">
+            <section class="section">
+              <div
+                class="card-content content-movements"
+                v-for="(d, index) in dates"
+                :key="index"
+              >
+                <p class="subtitle" v-if="d === formatDate(new Date())">Hoje</p>
+                <p class="subtitle" v-if="d !== formatDate(new Date())">
+                  {{ d }}
+                </p>
+                <div
+                  class="content is-small"
+                  v-for="mov in movements"
+                  :key="mov.id"
+                >
+                  <div
+                    class="columns is-mobile card-movement"
+                    @click="editarMovement(mov)"
+                    v-if="formatDate(new Date(mov.created_at)) == d"
+                  >
+                    <div class="column">
+                      <div
+                        class="tags has-addons is-rounded"
+                        v-if="mov.type_movement.code == '2'"
+                      >
+                        <span class="tag is-danger is-light">Saida</span>
+                        <span class="tag is-danger"
+                          ><i class="fas fa-arrow-down"></i
+                        ></span>
+                      </div>
+                      <div
+                        class="tags has-addons are-rounded"
+                        v-if="mov.type_movement.code == '1'"
+                      >
+                        <span class="tag is-link is-light">Entrada</span>
+                        <span class="tag is-info"
+                          ><i class="fas fa-arrow-up"></i
+                        ></span>
+                      </div>
+                    </div>
+                    <div class="column is-6">
+                      <div class="content">
+                        <div>
+                          <div class="columns">
+                            <div class="column">
+                              <strong>{{ mov.item.name }}</strong>
+                              <small> @johnsmith</small>
+                              <p>
+                                <small>
+                                  {{ mov.description }}
+                                </small>
+                              </p>
+                            </div>
+                            <!--
                           <div class="column">
                             <span class="icon has-text-info">
                               <i class="far fa-calendar-check"></i>
@@ -188,46 +210,48 @@
                             }}</small>
                           </div>
                         -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="control">
+                        <div class="tags has-addons are-medium">
+                          <span class="tag">
+                            <span
+                              class="icon has-text-success"
+                              v-if="mov.type_movement.code == '1'"
+                            >
+                              <i class="fas fa-plus"></i>
+                            </span>
+                            <span
+                              class="icon has-text-danger"
+                              v-if="mov.type_movement.code == '2'"
+                            >
+                              <i class="fas fa-minus"></i>
+                            </span>
+                          </span>
+                          <span
+                            class="tag is-danger is-light is-rounded"
+                            v-if="mov.type_movement.code == '2'"
+                            >{{ mov.quantity }}
+                          </span>
+                          <span
+                            class="tag is-success is-light is-rounded"
+                            v-if="mov.type_movement.code == '1'"
+                            >{{ mov.quantity }}</span
+                          >
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="column">
-                  <div class="control">
-                    <div class="tags has-addons are-medium">
-                      <span class="tag">
-                        <span
-                          class="icon has-text-success"
-                          v-if="mov.type_movement.code == '1'"
-                        >
-                          <i class="fas fa-plus"></i>
-                        </span>
-                        <span
-                          class="icon has-text-danger"
-                          v-if="mov.type_movement.code == '2'"
-                        >
-                          <i class="fas fa-minus"></i>
-                        </span>
-                      </span>
-                      <span
-                        class="tag is-danger is-light is-rounded"
-                        v-if="mov.type_movement.code == '2'"
-                        >{{ mov.quantity }}
-                      </span>
-                      <span
-                        class="tag is-success is-light is-rounded"
-                        v-if="mov.type_movement.code == '1'"
-                        >{{ mov.quantity }}</span
-                      >
-                    </div>
-                  </div>
-                </div>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </div>
-    </div>
+    </section>
     <Modal>
       <template #content>
         <div class="control">
@@ -325,6 +349,12 @@ export default defineComponent({
       dates: [] as string[],
       totais: [0, 0, 0, 0],
       totaisa: [0, 0, 0, 0],
+      filtroAberto: true,
+      filtros: {
+        valor: "",
+        tipoMovimento: "",
+        data: "",
+      },
     };
   },
   setup() {
@@ -346,6 +376,13 @@ export default defineComponent({
     novoMovement() {
       this.movementEdit = {} as IMovement;
       this.open();
+    },
+    filtro() {
+      this.filtroAberto = !this.filtroAberto;
+    },
+    aplicarFiltro() {
+      // Lógica para aplicar o filtro
+      console.log("Filtro aplicado:", this.filtro);
     },
     getDatesMovs() {
       this.movements.map((mov: IMovement) => {

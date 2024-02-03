@@ -1,14 +1,12 @@
 <template>
-  <div class="Registros">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: "Registros-View",
+  name: "Registros-View",
 });
 </script>
 
